@@ -1,0 +1,15 @@
+<h1>{{title}}</h1>
+
+<div>
+  <label>id : </label> {{hero.id}}
+  <br>
+  <label>name : </label> {{hero.name}}
+  
+</div>
+
+<div>
+  <label>change name : </label>
+  <!-- FormsModule을 이용해 양방향 바인딩을 하기 위한 문법 -->
+  <!-- [(ngModel)]로 바인딩할 대상을 지정하면 된다. -->
+  <input type="text" [(ngModel)]="hero.name" placeholder="name">
+</div>
