@@ -3,8 +3,7 @@ import { Component, OnInit } from '@angular/core';
 // hero interface import
 import { Hero } from '../hero';
 
-// hero mok-data import
-import { HEROES } from '../mock-heroes';
+import { HeroService } from '../hero.service';
 
 @Component({
   selector: 'app-heroes',
@@ -13,7 +12,7 @@ import { HEROES } from '../mock-heroes';
 })
 export class HeroesComponent implements OnInit {
   
-  heroes = HEROES;
+  heroes : Hero[];
 
   selectedHero : Hero;
 
@@ -22,9 +21,17 @@ export class HeroesComponent implements OnInit {
     this.selectedHero = hero;
   }
 
-  constructor() { }
+  // heroService를 통해 데이터 가져오는 함수 추가 
+  getHeroes() : void {
+    this.heroes = this.heroService.getHeroes();
+  }
+
+  // 생성자에 heroService 매개변수 추가
+  constructor(private heroService : HeroService) { }
   
   ngOnInit(): void {
+    // 진입과 함께 호출되도록 추가
+    this.getHeroes();
   }
 
 }
