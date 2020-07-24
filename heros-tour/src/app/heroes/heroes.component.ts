@@ -17,15 +17,15 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 })
 export class HeroesComponent implements OnInit {
   
-  selectedHero : Hero;
+  // selectedHero : Hero;
   heroes : Hero[];
 
   // 영웅을 선택하는 함수 생성
-  onSelect(hero:Hero) : void {
-    this.selectedHero = hero;
+  // onSelect(hero:Hero) : void {
+    // this.selectedHero = hero;
     // n번 id의 히어로를 조회하고 있다는 메세지 등록
-    this.messageService.add(`HeroesComponent : Selected hero id = ${hero.id}`);
-  }
+    // this.messageService.add(`HeroesComponent : Selected hero id = ${hero.id}`);
+  // }
   
   // heroService를 통해 데이터 가져오는 함수 추가 
   getHeroes() : void {

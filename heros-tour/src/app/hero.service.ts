@@ -5,7 +5,7 @@ import { Hero } from './hero';
 import { HEROES } from './mock-heroes';
 
 // 데이터를 가져오는 동안 UI를 중지시키는 등의 역할을 함
-import { Observable, of } from 'rxjs';
+import { Observable, of, ObservableLike } from 'rxjs';
 
 // 중지되었을 때 노출할 메세지 관련 servie
 import { MessageService } from './message.service';
@@ -19,6 +19,11 @@ import { MessageService } from './message.service';
   providedIn: 'root'
 })
 export class HeroService {
+  constructor(
+    // 생성자에 추가
+    private messageService : MessageService
+  ) { }
+
   // Hero[]를 리턴하는 함수 생성
   // rxjs - Observable : 데이터를 가져오는 동안 UI를 중지시키고 대기하도록 함
   getHeroes() : Observable<Hero[]> {
@@ -27,8 +32,8 @@ export class HeroService {
     return of(HEROES);
   }
 
-  constructor(
-    // 생성자에 추가
-    private messageService : MessageService
-  ) { }
+  getHero(id : number) : Observable<Hero> {
+    this.messageService.add(`HeroService : fetched hero id = ${id}`);
+    return of(HEROES.find(hero => hero.id === id));
+  }
 }
