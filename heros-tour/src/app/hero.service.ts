@@ -1,7 +1,14 @@
+// hero 관련 데이터 처리를 하는 service
 import { Injectable } from '@angular/core';
 
 import { Hero } from './hero';
 import { HEROES } from './mock-heroes';
+
+// 데이터를 가져오는 동안 UI를 중지시키는 등의 역할을 함
+import { Observable, of } from 'rxjs';
+
+// 중지되었을 때 노출할 메세지 관련 servie
+import { MessageService } from './message.service';
 
 @Injectable({
   /* 범위를 root로 하면 Angular는 하나의 공유 인스턴스 HeroService를 만들고 
@@ -13,9 +20,15 @@ import { HEROES } from './mock-heroes';
 })
 export class HeroService {
   // Hero[]를 리턴하는 함수 생성
-  getHeroes() : Hero[] {
-    return HEROES;
+  // rxjs - Observable : 데이터를 가져오는 동안 UI를 중지시키고 대기하도록 함
+  getHeroes() : Observable<Hero[]> {
+    // 데이터를 불러오고 있다는 메세지 등록
+    this.messageService.add('HeroService : fetched heroes');
+    return of(HEROES);
   }
 
-  constructor() { }
+  constructor(
+    // 생성자에 추가
+    private messageService : MessageService
+  ) { }
 }
