@@ -1,4 +1,12 @@
 <h2>My Heroes</h2>
+
+<div>
+    <label>hero name : 
+        <input #heroName />
+    </label>
+    <button (click)="add(heroName.value); heroName.value=''">add</button>
+</div>
+
 <ul class="heroes">
     <!-- *ngFor를 이용해 반복 가능 -->
     <!-- (click)을 이용해 이벤트 바인딩 가능, *ngFor에서 사용한 변수명도 사용 가능 -->
@@ -8,6 +16,8 @@
         <a routerLink = "/detail/{{hero.id}}">
             <span class="badge"> {{hero.id}}</span> {{hero.name}}
         </a>
+        <button class="delete" title="delete hero"
+            (click)="delete(hero)">X</button>
     </li>
 </ul>
 
