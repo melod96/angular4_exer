@@ -16,6 +16,12 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
+
+    // 생성자에 heroService 매개변수 추가
+    constructor(
+      private heroService : HeroService
+      , private messageService : MessageService
+    ) { }
   
   // selectedHero : Hero;
   heroes : Hero[];
@@ -33,11 +39,6 @@ export class HeroesComponent implements OnInit {
     this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
   }
 
-  // 생성자에 heroService 매개변수 추가
-  constructor(
-    private heroService : HeroService
-    , private messageService : MessageService
-  ) { }
   
   ngOnInit(): void {
     // 진입과 함께 호출되도록 추가

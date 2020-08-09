@@ -7,11 +7,12 @@
     <button (click)="add(heroName.value); heroName.value=''">add</button>
 </div>
 
+<!-- *ngFor를 이용해 반복 가능 -->
+<!-- (click)을 이용해 이벤트 바인딩 가능, *ngFor에서 사용한 변수명도 사용 가능 -->
+<!-- li를 생성할때 현재 선택된 Hero와 같으면 class에 selected가 추가된다. -->
+<!-- <li *ngFor="let hero of heroes" [class.selected]="hero === selectedHero"  (click)="onSelect(hero)" > -->
+    
 <ul class="heroes">
-    <!-- *ngFor를 이용해 반복 가능 -->
-    <!-- (click)을 이용해 이벤트 바인딩 가능, *ngFor에서 사용한 변수명도 사용 가능 -->
-    <!-- li를 생성할때 현재 선택된 Hero와 같으면 class에 selected가 추가된다. -->
-    <!-- <li *ngFor="let hero of heroes" [class.seleced]="hero === selectedHero"  (click)="onSelect(hero)" > -->
     <li *ngFor="let hero of heroes">
         <a routerLink = "/detail/{{hero.id}}">
             <span class="badge"> {{hero.id}}</span> {{hero.name}}
